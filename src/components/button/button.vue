@@ -12,21 +12,21 @@ export default {
   },
   computed: {
     _class() {
-      let _class = "flex items-center gap-[8px] transition duration-300 ease"
+      let _class = ["flex items-center gap-[8px] transition duration-300 ease"]
       if (this.color === "primary") {
         // display
         // background
-        _class += " bg-primary text-white"
+        _class.push("bg-primary text-white")
         // padding
-        _class += " px-[18px] py-2.5"
+        _class.push("px-[18px] py-2.5")
         // border radius
-        _class += " rounded"
+        _class.push("rounded")
         // font
-        _class += " text-lg font-semi-bold"
+        _class.push("text-lg font-semi-bold")
         // hover state
-        _class += " hover:bg-opacity-80"
+        _class.push("hover:bg-opacity-80")
         // active state
-        _class += " active:bg-primary-800"
+        _class.push("active:bg-primary-800")
       }
 
       return _class

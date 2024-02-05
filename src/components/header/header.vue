@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <header class="py-[22px] px-[64px] fixed min-h-[85px]">
+  <header class="py-[22px] fixed min-h-[85px] w-full">
     <div class="container mx-auto flex gap-[65px] items-center">
       <h3 class="text-[23px] text-primary-950 font-semibold">
         Record conflict dashboard

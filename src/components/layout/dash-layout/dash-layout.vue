@@ -1,9 +1,7 @@
 <template lang="">
   <Header />
-  <main class="pt-[85px] px-[63px]">
-    <div class="container mx-auto">
-      <slot />
-    </div>
+  <main class="pt-[85px]">
+    <slot />
   </main>
 </template>
 <script lang="ts">
