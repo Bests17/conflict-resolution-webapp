@@ -2,6 +2,7 @@
 import Button from "../button/button.vue"
 import UserGroupIcon from "../icons/icon-user-group.vue"
 import TimerIcon from "../icons/icon-timer.vue"
+import FileOpenIcon from "../icons/icon-file-open.vue"
 import NavLink from "./nav/nav-link.vue"
 
 export default {
@@ -10,13 +11,14 @@ export default {
     UserGroupIcon,
     NavLink,
     TimerIcon,
+    FileOpenIcon,
   },
 }
 </script>
 
 <template>
-  <header class="py-[22px] px-[64px] container mx-auto">
-    <div class="flex gap-[65px] items-center">
+  <header class="py-[22px] px-[64px] fixed min-h-[85px]">
+    <div class="container mx-auto flex gap-[65px] items-center">
       <h3 class="text-[23px] text-primary-950 font-semibold">
         Record conflict dashboard
       </h3>
@@ -27,7 +29,7 @@ export default {
         </li>
 
         <li>
-          <NavLink to="dashboard"><UserGroupIcon /> File categories</NavLink>
+          <NavLink to="categories"><FileOpenIcon /> File categories</NavLink>
         </li>
 
         <li>

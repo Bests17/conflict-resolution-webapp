@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <h1 class="text-sm text-primary">Activities</h1>
+    <h1 class="text-sm text-primary">Categories</h1>
   </Layout>
 </template>
 

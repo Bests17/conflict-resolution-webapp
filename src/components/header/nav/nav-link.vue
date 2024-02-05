@@ -21,7 +21,14 @@ a {
   @apply hover:text-primary;
   @apply transition duration-300;
 
+  &:hover {
+    path {
+      @apply fill-primary;
+    }
+  }
+
   path {
+    @apply transition duration-300;
     @apply fill-[#262D3D];
   }
 }
@@ -30,6 +37,12 @@ a {
   @apply bg-primary;
   @apply hover:text-white;
   @apply text-white;
+
+  &:hover {
+    path {
+      @apply fill-white;
+    }
+  }
 
   path {
     @apply fill-white;
