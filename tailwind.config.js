@@ -18,6 +18,7 @@ export default {
       colors: {
         primary: {
           100: "#F0F5FF",
+          200: "#E5EEFF",
           DEFAULT: "#204ECF",
           800: "#1D5BD6",
           950: "#0400D0",
@@ -27,6 +28,8 @@ export default {
         },
         gray: {
           300: "#606060",
+          500: "#667085",
+          700: "#344054",
         },
         neutral: {
           700: "#3F444D",

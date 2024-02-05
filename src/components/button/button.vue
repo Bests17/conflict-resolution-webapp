@@ -1,5 +1,5 @@
 <template lang="">
-  <button :class="_class">
+  <button :data-variant="variant" :class="[_class]">
     <slot />
   </button>
 </template>
@@ -8,31 +8,55 @@
 export default {
   props: {
     color: { type: String, default: "primary" },
+    variant: { type: String, default: "filled" },
     class: String,
   },
   computed: {
     _class() {
-      let _class = ["flex items-center gap-[8px] transition duration-300 ease"]
+      let _class = [
+        "flex items-center gap-[8px] transition duration-150 ease",
+        "text-nowrap",
+        "rounded",
+      ]
       if (this.color === "primary") {
-        // display
-        // background
-        _class.push("bg-primary text-white")
         // padding
         _class.push("px-[18px] py-2.5")
-        // border radius
-        _class.push("rounded")
         // font
         _class.push("text-lg font-semi-bold")
         // hover state
         _class.push("hover:bg-opacity-80")
-        // active state
-        _class.push("active:bg-primary-800")
+
+        if (this.variant === "outlined") {
+          _class.push("bg-primary-200 text-neutral-1000")
+          _class.push("ring-2 ring-inset ring-primary text-neutral-1000")
+          _class.push("active:bg-primary-100")
+        } else {
+          // background
+          _class.push("bg-primary text-white")
+          // active state
+          _class.push("active:bg-primary-800")
+        }
       }
 
+      if (this.class) {
+        _class.push(this.class)
+      }
       return _class
     },
   },
 }
 </script>
 
-<style lang=""></style>
+<style lang="scss">
+.bg-primary {
+  &[data-variant="outlined"] {
+    path {
+      @apply fill-neutral-700;
+    }
+  }
+
+  path {
+    @apply fill-white;
+  }
+}
+</style>

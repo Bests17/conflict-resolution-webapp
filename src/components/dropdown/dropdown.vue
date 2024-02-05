@@ -3,7 +3,9 @@
     <div>
       <MenuButton :class="menuButtonClass">
         {{ label }}
-        <ChevronDownIcon />
+        <span v-if="!hideIcon">
+          <BaseIcon :name="icon" :class="`min-w-[15px] ${iconClass}`" />
+        </span>
       </MenuButton>
     </div>
 
@@ -42,6 +44,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue"
 import ChevronDownIcon from "../icons/icon-chevron-down.vue"
 import type { PropType } from "vue"
+import BaseIcon from "../icons/base-icon.vue"
 
 export interface ItemType {
   value: String
@@ -55,12 +58,14 @@ export default {
     MenuItem,
     MenuItems,
     ChevronDownIcon,
+    BaseIcon,
   },
   computed: {
     menuButtonClass() {
       return [
         `inline-flex`,
         `w-full`,
+        `text-nowrap`,
         `justify-center`,
         `items-center`,
         `bg-primary-100`,
@@ -95,10 +100,13 @@ export default {
   },
   props: {
     value: String,
+    icon: { type: String, default: "chevron-down" },
+    iconClass: { type: String, default: "" },
+    hideIcon: { type: Boolean, default: false },
     items: { type: Object as PropType<ItemType[]>, required: true },
     label: { type: String, required: true },
     rounded: Boolean,
-    onChange: Function
+    onChange: Function,
   },
 
   methods: {
