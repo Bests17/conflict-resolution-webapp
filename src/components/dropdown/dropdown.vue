@@ -24,13 +24,13 @@
           v-for="item of items"
           active="name"
           v-slot="{ active }"
-          @click="(e: Event) => handleItemClick(e, item)"
+          @click="($event: Event) => handleItemClick($event, item)"
         >
           <span
             :class="[
               active ? 'bg-gray-100' : 'text-gray-300',
               'block px-4 py-2 cursor-pointer text-md',
-              value === item.value ? 'text-gray-900 bg-gray-100' : '',
+              modelValue === item.value ? 'text-gray-900 bg-gray-100' : '',
             ]"
             >{{ item.label }}</span
           >
@@ -99,7 +99,7 @@ export default {
     },
   },
   props: {
-    value: String,
+    modelValue: String,
     icon: { type: String, default: "chevron-down" },
     iconClass: { type: String, default: "" },
     hideIcon: { type: Boolean, default: false },
@@ -108,12 +108,12 @@ export default {
     rounded: Boolean,
     onChange: Function,
   },
-
+  emits: ['update:modelValue'],
   methods: {
-    handleItemClick(e: Event, item: ItemType) {
-      if (this.value === item.value) return
+    handleItemClick(_e: Event, item: ItemType) {
+      if (this.modelValue === item.value) return
 
-      this.$emit("onChange", e, item.value)
+      this.$emit("update:modelValue", item.value)
     },
   },
 }

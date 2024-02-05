@@ -38,6 +38,8 @@
           'focus:ring-1 focus:ring-inset focus:ring-purple-500',
           'sm:text-sm',
         ]"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         :placeholder="placeholder"
       />
     </div>
@@ -62,10 +64,12 @@ export default {
     label: { type: String, default: "" },
     name: { type: String, default: "" },
     id: { type: String, default: "" },
-    type: { type: String, default: "" },
+    type: { type: String, default: "text" },
     placeholder: { type: String, default: "" },
+    modelValue: { type: String, default: "" },
     startAdornment: Object as PropType<AdornmentType>,
   },
+  emits: ['update:modelValue']
 }
 </script>
 <style lang=""></style>

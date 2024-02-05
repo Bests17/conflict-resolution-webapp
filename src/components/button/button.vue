@@ -22,7 +22,7 @@ export default {
         // padding
         _class.push("px-[18px] py-2.5")
         // font
-        _class.push("text-lg font-semi-bold")
+        _class.push("text-md font-semi-bold")
         // hover state
         _class.push("hover:bg-opacity-80")
 

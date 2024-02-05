@@ -6,10 +6,9 @@
           <div class="flex items-center gap-[25px] w-full">
             <Dropdown
               :items="records"
-              :value="activeRecord"
+              v-model="activeRecord"
               label="Sort record by"
               rounded
-              @onChange="handleOnChange"
             />
 
             <Dropdown
@@ -21,14 +20,15 @@
 
             <div class="w-full max-w-[600px]">
               <Input
+                v-model="searchText"
                 :fullWidth="true"
-                placeholder="Search student by any keyword"
                 :startAdornment="startAdornment"
+                placeholder="Search student by any keyword"
               />
             </div>
           </div>
 
-          <Button variant="outlined" class="ring-[#226BFF]">
+          <Button variant="outlined" class="py-[15px] ring-[#226BFF]">
             <span class="text-nowrap"> Download Doc </span>
             <Icon name="download" class="fill-white" />
           </Button>
@@ -48,6 +48,7 @@ interface DataType {
   activeRecord: String | null
   records: ItemType[]
   startAdornment: AdornmentType
+  searchText: String
 }
 
 export default {
@@ -75,13 +76,8 @@ export default {
         },
       ],
       startAdornment: { type: "icon", name: "search" },
+      searchText: "",
     }
-  },
-
-  methods: {
-    handleOnChange(_e: Event, value: string) {
-      this.activeRecord = value
-    },
   },
 }
 </script>
