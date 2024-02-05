@@ -22,14 +22,14 @@ a {
   @apply transition duration-300;
 
   &:hover {
-    path {
-      @apply fill-primary;
+    svg {
+      @apply text-primary;
     }
   }
 
-  path {
+  svg {
     @apply transition duration-300;
-    @apply fill-[#262D3D];
+    @apply text-[#262D3D];
   }
 }
 
@@ -39,13 +39,13 @@ a {
   @apply text-white;
 
   &:hover {
-    path {
-      @apply fill-white;
+    svg {
+      @apply text-white;
     }
   }
 
-  path {
-    @apply fill-white;
+  svg {
+    @apply text-white;
   }
 }
 </style>

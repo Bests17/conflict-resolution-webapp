@@ -1,5 +1,8 @@
 <template>
-  <component :is="iconComponent" :class="['inline-block min-w-6 min-h-6', _class]" />
+  <component
+    :is="iconComponent"
+    :class="['inline-block min-w-6 min-h-6', _class]"
+  />
 </template>
 
 <script lang="ts">
@@ -10,6 +13,7 @@ import TimerIcon from "./icon-timer.vue"
 import UserGroupIcon from "./icon-user-group.vue"
 import IconDownload from "./icon-download.vue"
 import IconBarsFilter from "./icon-bars-filter.vue"
+import IconCircleInfo from "./icon-circle-info.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -18,7 +22,8 @@ const icons: any = {
   timer: TimerIcon,
   "user-group": UserGroupIcon,
   download: IconDownload,
-  'bars-filter': IconBarsFilter,
+  "bars-filter": IconBarsFilter,
+  "circle-info": IconCircleInfo,
 }
 
 export default {

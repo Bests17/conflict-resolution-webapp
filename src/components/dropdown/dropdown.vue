@@ -106,9 +106,8 @@ export default {
     items: { type: Object as PropType<ItemType[]>, required: true },
     label: { type: String, required: true },
     rounded: Boolean,
-    onChange: Function,
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   methods: {
     handleItemClick(_e: Event, item: ItemType) {
       if (this.modelValue === item.value) return

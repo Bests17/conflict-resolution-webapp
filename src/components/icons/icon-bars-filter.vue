@@ -15,7 +15,7 @@
       width="20"
       height="20"
     >
-      <rect width="20" height="20" fill="#D9D9D9" />
+      <rect width="20" height="20" fill="currentColor" />
     </mask>
     <g mask="url(#mask0_278_2593)">
       <path

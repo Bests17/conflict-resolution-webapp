@@ -30,7 +30,7 @@
 
           <Button variant="outlined" class="py-[15px] ring-[#226BFF]">
             <span class="text-nowrap"> Download Doc </span>
-            <Icon name="download" class="fill-white" />
+            <Icon name="download" />
           </Button>
         </div>
       </div>
