@@ -16,11 +16,16 @@
       </div>
     </Topbar>
 
-    <div class="container mx-auto mt-[15px]">
+    <div class="container mx-auto py-[15px]">
       <div class="flex lg:flex-row flex-col gap-[50px] justify-between">
-        <div class="flex gap-[73px]">
-          <ProfileSection :record="currentRecord" />
-          <RecordSources :sources="sources" />
+        <div class="w-full">
+          <div class="flex gap-[73px]">
+            <ProfileSection :record="currentRecord" />
+            <RecordSources :sources="sources" />
+          </div>
+          <div class="mt-[45px]">
+            <RecordCompareTable :records="records" />
+          </div>
         </div>
 
         <div class="flex flex-col items-center">
@@ -64,6 +69,7 @@ import ActivityCard from "../../components/activity/activity-card.vue"
 import { ActivityType } from "../../components/activity/activity-item.vue"
 import ReplaceConfirmModal from "../../components/modal/replace-confirm-modal.vue"
 import ConfirmSuccessModal from "../../components/modal/confirmation-success-modal.vue"
+import RecordCompareTable from "../../components/conflict-compare-table/conflict-compare-table.vue"
 
 interface DataType {
   records: RecordType[]
@@ -84,6 +90,7 @@ export default {
     ActivityCard,
     ReplaceConfirmModal,
     ConfirmSuccessModal,
+    RecordCompareTable,
   },
   data(): DataType {
     return {
@@ -139,7 +146,7 @@ export default {
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
-          age: 24,
+          age: '24',
           gender: "male",
           class: "Grade 12",
           source: "Category 1\ Algebra student .Xls",
@@ -148,7 +155,7 @@ export default {
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
-          age: 24,
+          age: '12',
           gender: "male",
           class: "Grade 12",
           source: "Category 4\ Chem. student .Xls",

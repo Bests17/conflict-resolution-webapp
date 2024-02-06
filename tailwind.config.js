@@ -26,6 +26,9 @@ export default {
           950: "#0400D0",
           1000: "#0300AC",
         },
+        red: {
+          DEFAULT: "#FF0000",
+        },
         purple: {
           500: "#524FFF",
         },
@@ -51,6 +54,7 @@ export default {
         },
         neutral: {
           700: "#3F444D",
+          500: "#B7B7B7",
           1000: "#0A0D14",
         },
       },

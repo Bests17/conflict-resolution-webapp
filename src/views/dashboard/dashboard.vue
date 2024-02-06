@@ -203,7 +203,6 @@ export default {
   },
   methods: {
     handleViewDetail(row: any) {
-      console.log("row", row)
       this.$router.push(`/record/${row.id}/review-conflict`)
     },
   },

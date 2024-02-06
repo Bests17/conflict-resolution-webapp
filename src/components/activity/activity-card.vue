@@ -9,7 +9,7 @@
     ]"
   >
     <div class="bg-[#636366] py-5 px-2.5">
-      <span class="text-sm font-semibold">Activity Log</span>
+      <span class="text-sm font-medium text-white">Activity Log</span>
     </div>
 
     <div class="px-2.5 pb-5 activity-list">

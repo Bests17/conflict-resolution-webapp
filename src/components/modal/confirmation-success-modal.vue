@@ -9,10 +9,7 @@
         </span>
       </span>
 
-      <div
-        v-html="_message"
-        class="text-md text-gray-900 mt-5"
-      ></div>
+      <div v-html="_message" class="text-md text-gray-900 mt-5"></div>
 
       <div class="flex gap-3 mt-8">
         <Button class="w-full leading-6 rounded-lg" @click="$emit('close')"
@@ -43,7 +40,6 @@ export default {
     message: {
       immediate: true,
       handler(newVal: string) {
-        console.log("newVal", newVal)
         this._message = newVal || ""
       },
     },

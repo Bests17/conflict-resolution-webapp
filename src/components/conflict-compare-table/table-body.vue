@@ -1,0 +1,47 @@
+<template lang="">
+  <td :class="['h-10 p-4', _class]">
+    <div class="flex flex-col gap-2">
+      <div class="flex gap-1 justify-between">
+        <span class="text-red font-bold text-sm">{{ `#${index}` }}</span>
+
+        <span class="flex gap-1 items-center text-xxs">
+          <Icon
+            name="file-open"
+            class="min-w-[15px] w-[15px] min-h-[15px] h-[15px] text-primary-950"
+          />
+          <span class="text-black leading-normal">
+            From:
+            <span class="text-[#6B6969]">{{ rows.source[index] }}</span>
+          </span>
+        </span>
+      </div>
+      <div class="p-[13px] border border-[#3F444D] rounded">{{ value }}</div>
+      <div class="text-xs">
+        This is the main <span class="text-primary font-bold">{{ field }}</span>
+      </div>
+    </div>
+  </td>
+</template>
+
+<script lang="ts">
+import Icon from "../../components/icons/base-icon.vue"
+
+export default {
+  props: {
+    class: String,
+    index: { type: Number, required: true },
+    value: { type: String, required: true },
+    rows: { type: Object, required: true },
+    field: { type: String, required: true },
+  },
+  components: {
+    Icon,
+  },
+  computed: {
+    _class() {
+      return this.class
+    },
+  },
+}
+</script>
+<style lang="scss"></style>
