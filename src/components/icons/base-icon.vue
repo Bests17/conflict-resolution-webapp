@@ -21,6 +21,7 @@ import IconAddFolder from "./icon-add-folder.vue"
 import IconFolder from "./icon-folder.vue"
 import IconPencil from "./icon-pencil.vue"
 import IconTrash from "./icon-trash.vue"
+import IconBackSpace from "./icon-back-space.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -38,6 +39,7 @@ const icons: any = {
   folder: IconFolder,
   pencil: IconPencil,
   trash: IconTrash,
+  back: IconBackSpace,
 }
 
 export default {

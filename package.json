@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^0.0.0-insiders.0e0277a",
+    "dayjs": "^1.11.10",
     "sass": "^1.70.0",
     "uuid": "^9.0.1",
     "vue": "^3.3.11",
