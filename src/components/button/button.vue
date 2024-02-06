@@ -14,7 +14,7 @@ export default {
   computed: {
     _class() {
       let _class = [
-        "flex items-center gap-[8px] transition duration-150 ease",
+        "flex items-center justify-center gap-[8px] transition duration-150 ease",
         "text-nowrap",
         "rounded",
       ]

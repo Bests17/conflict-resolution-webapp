@@ -14,6 +14,8 @@ import UserGroupIcon from "./icon-user-group.vue"
 import IconDownload from "./icon-download.vue"
 import IconBarsFilter from "./icon-bars-filter.vue"
 import IconCircleInfo from "./icon-circle-info.vue"
+import IconCheckbox from "./icon-checkbox.vue"
+import IconCircleCheckbox from "./icon-circle-checkbox.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -24,6 +26,8 @@ const icons: any = {
   download: IconDownload,
   "bars-filter": IconBarsFilter,
   "circle-info": IconCircleInfo,
+  "checkbox": IconCheckbox,
+  "circleCheckbox": IconCircleCheckbox,
 }
 
 export default {
