@@ -59,7 +59,7 @@ import Icon from "../../components/icons/base-icon.vue"
 import CreateCategoryModal from "../../components/modal/create-category-modal.vue"
 import CategoryCard from "../../components/category/category-card.vue"
 import { CategoryType } from "../../types/category"
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid"
 
 interface DataType {
   searchText: string
@@ -89,13 +89,24 @@ export default {
   },
   methods: {
     handleClick() {
+      this.category = null
       this.showAddModal = true
     },
     handleClose() {
       this.showAddModal = false
     },
-    handleCreate(categoryName: string) {
-      this.categories.push({ id: uuidv4(), name: categoryName })
+    handleCreate(category: CategoryType) {
+      if (category?.id) {
+        const _category = this.categories.find(
+          (category) => category.id === category.id
+        )
+        const index = this.categories.findIndex((ca) => ca.id === category.id)
+        if (!_category) return
+        _category.name = category.name
+        this.categories[index] = _category
+      } else {
+        this.categories.push({ id: uuidv4(), name: category.name })
+      }
       this.showAddModal = false
     },
     handleRemove(id: string, index: number) {
@@ -106,6 +117,7 @@ export default {
     },
     handleEdit(id: string, index: number) {
       this.showAddModal = true
+      this.category = this.categories[index]
       console.log("handleEdit", id)
       console.log("handleEdit", index)
     },

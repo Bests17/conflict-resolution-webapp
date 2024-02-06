@@ -12,12 +12,14 @@
     <div
       class="flex gap-3 bg-[#F3F6FF] border-t border-neutral-500 items-center justify-between px-2 h-[60px]"
     >
-      <span class="text-md font-semibold">{{ name }}</span>
+      <span :title="name" class="text-md font-semibold line-clamp-2">{{
+        name
+      }}</span>
       <div class="flex gap-4 items-center">
-        <span @click="handleEdit($event, id)"
+        <span title="edit" @click="handleEdit($event, id)"
           ><Icon name="pencil" class="text-black cursor-pointer"
         /></span>
-        <span @click="handleRemove($event, id)"
+        <span title="remove" @click="handleRemove($event, id)"
           ><Icon name="trash" class="text-[#FF0000] cursor-pointer"
         /></span>
       </div>

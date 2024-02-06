@@ -53,17 +53,24 @@ export default {
     open: { type: Boolean, required: true },
     category: { type: Object as PropType<CategoryType | null> },
   },
-  mounted() {},
+  watch: {
+    category: {
+      immediate: true,
+      handler(newVal: CategoryType | null) {
+        this.categoryName = newVal?.name || ""
+      },
+    },
+  },
   data(): DataType {
     return {
-      categoryName: this.category?.name,
+      categoryName: "",
     }
   },
   methods: {
     handleCreate() {
       if (!this.categoryName) return
-
-      this.$emit("create", this.categoryName)
+      const category = this.category || {}
+      this.$emit("create", { ...category, name: this.categoryName })
       this.categoryName = ""
     },
   },
