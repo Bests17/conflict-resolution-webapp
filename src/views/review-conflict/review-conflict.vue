@@ -64,12 +64,13 @@ import Topbar from "../../components/top-bar/top-bar.vue"
 import Icon from "../../components/icons/base-icon.vue"
 import ProfileSection from "../../components/profile-section/profile-section.vue"
 import RecordSources from "../../components/profile-section/record-sources.vue"
-import { RecordType } from "../../../types/record"
+import { RecordType } from "../../types/record"
 import ActivityCard from "../../components/activity/activity-card.vue"
 import { ActivityType } from "../../components/activity/activity-item.vue"
 import ReplaceConfirmModal from "../../components/modal/replace-confirm-modal.vue"
 import ConfirmSuccessModal from "../../components/modal/confirmation-success-modal.vue"
 import RecordCompareTable from "../../components/conflict-compare-table/conflict-compare-table.vue"
+import { v4 as uuidv4 } from "uuid"
 
 interface DataType {
   records: RecordType[]
@@ -96,42 +97,14 @@ export default {
     return {
       activities: [
         {
+          id: uuidv4(),
           type: "Aminu",
           description:
             "from 'Grade 6 student list .Xls' was accepted as correct first name.",
           updatedAt: "Feb 17 2024 - 12:32:13 pm",
         },
         {
-          type: "Aminu",
-          description:
-            "from 'Grade 6 student list .Xls' was accepted as correct first name.",
-          updatedAt: "Feb 17 2024 - 12:32:13 pm",
-        },
-        {
-          type: "Aminu",
-          description:
-            "from 'Grade 6 student list .Xls' was accepted as correct first name.",
-          updatedAt: "Feb 17 2024 - 12:32:13 pm",
-        },
-        {
-          type: "Aminu",
-          description:
-            "from 'Grade 6 student list .Xls' was accepted as correct first name.",
-          updatedAt: "Feb 17 2024 - 12:32:13 pm",
-        },
-        {
-          type: "Aminu",
-          description:
-            "from 'Grade 6 student list .Xls' was accepted as correct first name.",
-          updatedAt: "Feb 17 2024 - 12:32:13 pm",
-        },
-        {
-          type: "Aminu",
-          description:
-            "from 'Grade 6 student list .Xls' was accepted as correct first name.",
-          updatedAt: "Feb 17 2024 - 12:32:13 pm",
-        },
-        {
+          id: uuidv4(),
           type: "Aminu",
           description:
             "from 'Grade 6 student list .Xls' was accepted as correct first name.",
@@ -146,7 +119,7 @@ export default {
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
-          age: '24',
+          age: "24",
           gender: "male",
           class: "Grade 12",
           source: "Category 1\ Algebra student .Xls",
@@ -155,7 +128,7 @@ export default {
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
-          age: '12',
+          age: "12",
           gender: "male",
           class: "Grade 12",
           source: "Category 4\ Chem. student .Xls",
@@ -191,7 +164,7 @@ export default {
     onReplaceConfirm() {
       console.log("handle replacing")
       this.showReplaceConfirmModal = false
-      this.successMessage = `<span class="font-semibold">${this.student.firstName} ${this.student.lastName}</span> information has been updated.`
+      this.successMessage = `<span class="font-semibold">${this.currentRecord?.first_name} ${this.currentRecord?.last_name}</span> information has been updated.`
       this.showSuccessModal = true
     },
   },

@@ -8,6 +8,6 @@ export interface FileType {
   name: string
   format: string
   size: string
-  created_at: string
-  last_modified: string
+  created_at: string | number
+  last_modified: string | number
 }

@@ -62,7 +62,6 @@ interface DataType {
   searchText: string
   files: FileType[]
   showUploadModal: boolean
-  tableData: any[]
 }
 
 export default {
@@ -135,7 +134,7 @@ export default {
         name,
         format,
         size: `${(file.size / (1024 * 2)).toFixed(2)} MB`,
-        created_at: new Date().getTime(),
+        created_at: `${new Date().getTime()}`,
         last_modified: file.lastModified,
       })
       this.closeModal()

@@ -43,8 +43,7 @@ export default {
   },
   computed: {
     data() {
-      const convertedObject = {}
-
+      const convertedObject: any = {}
       this.records.forEach((record: RecordType) => {
         Object.entries(record).forEach(([key, value]) => {
           if (!convertedObject[key]) {

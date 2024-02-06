@@ -5,10 +5,9 @@
         <input
           :id="id"
           :name="name"
-          :value="modelValue"
           type="checkbox"
           class="peer cursor-pointer appearance-none relative h-4 w-4 bg-white border border-black border-opacity-[0.14] transition-all checked:border-primary checked:bg-primary rounded"
-          @change="$emit('update:modelValue', $event.target.value)"
+          v-model="value"
         />
         <div
           class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 transition-opacity peer-checked:opacity-100"
@@ -32,6 +31,16 @@ export default {
     modelValue: { type: String, default: "" },
   },
   emits: ["update:modelValue"],
+  computed: {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value: any) {
+        this.$emit("update:modelValue", value)
+      },
+    },
+  },
 }
 </script>
 <style lang=""></style>
