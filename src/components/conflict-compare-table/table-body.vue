@@ -15,9 +15,9 @@
           </span>
         </span>
       </div>
-      <div class="p-[13px] border border-[#3F444D] rounded">{{ value }}</div>
+      <div class="p-[13px] border border-[#3F444D] rounded text-sm">{{ value }}</div>
       <div class="text-xs">
-        This is the main <span class="text-primary font-bold">{{ field }}</span>
+        <Radio :label="label" />
       </div>
     </div>
   </td>
@@ -25,6 +25,7 @@
 
 <script lang="ts">
 import Icon from "../../components/icons/base-icon.vue"
+import Radio from "../../components/radio/radio.vue"
 
 export default {
   props: {
@@ -36,10 +37,14 @@ export default {
   },
   components: {
     Icon,
+    Radio,
   },
   computed: {
     _class() {
       return this.class
+    },
+    label() {
+      return `This is the main <span class="text-primary font-bold">${this.field}</span>`
     },
   },
 }
