@@ -4,11 +4,11 @@
       <BaseIcon name="circleCheckbox" />
     </div>
     <div class="flex flex-col gap-2 mt-7">
-      <div class="font-semibold">
+      <div :class="['font-semibold', textSize]">
         <span class="text-[#226BFF]">{{ activity.type }}</span>
         {{ activity.description }}
       </div>
-      <div class="text-sm font-normal text-[#636366]">
+      <div :class="['text-sm font-normal text-[#636366]', timeStepSize]">
         {{ activity.updatedAt }}
       </div>
     </div>
@@ -28,7 +28,24 @@ export default {
   components: {
     BaseIcon,
   },
+  computed: {
+    textSize() {
+      if (this.size === "small") {
+        return "text-xs"
+      }
+
+      return "text-md"
+    },
+    timeStepSize() {
+      if (this.size === "small") {
+        return "text-xs"
+      }
+
+      return "text-sm"
+    },
+  },
   props: {
+    size: { type: String as PropType<"small" | "medium">, default: "medium" },
     activity: { type: Object as PropType<ActivityType>, required: true },
   },
 }

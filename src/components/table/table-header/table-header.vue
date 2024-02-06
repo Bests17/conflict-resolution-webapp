@@ -15,12 +15,20 @@
     >
       {{ cell.name }}
     </th>
+
+    <th
+      v-if="tableActions.length"
+      class="py-5 px-2.5 text-white font-semibold text-sm"
+    >
+      Actions
+    </th>
   </thead>
 </template>
 
 <script lang="ts">
 import { PropType } from "vue"
 import Checkbox from "../../checkbox/checkbox.vue"
+import { TableActionType } from "../table.vue"
 
 export interface HeadCellType {
   name: string
@@ -36,6 +44,7 @@ export default {
     cells: { type: Object as PropType<HeadCellType[]>, required: true },
     checkedItems: { type: Array<String> },
     showCheckbox: { type: Boolean },
+    tableActions: { type: Object as PropType<TableActionType[]>, default: [] },
   },
 }
 </script>

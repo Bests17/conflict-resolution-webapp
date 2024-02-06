@@ -24,7 +24,7 @@ import Header from "../../components/header/header.vue"
 import Layout from "../../components/layout/dash-layout/dash-layout.vue"
 import ActivityItem, {
   ActivityType,
-} from "../../components/activity/activity-tem.vue"
+} from "../../components/activity/activity-item.vue"
 import Topbar from "../../components/top-bar/top-bar.vue"
 import SearchInput from "../../components/input/search-input.vue"
 

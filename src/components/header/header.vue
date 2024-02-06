@@ -21,7 +21,7 @@ export default {
 
       <ul class="flex gap-[38px] items-center">
         <li>
-          <NavLink to="/"
+          <NavLink to="/record"
             ><BaseIcon name="user-group" /> Student record</NavLink
           >
         </li>

@@ -28,7 +28,7 @@ export default {
         "text-nowrap",
         "rounded",
         "px-[18px] py-2.5",
-        "text-md font-semi-bold",
+        "text-md font-semibold",
       ]
       if (this.color === "primary") {
         _class.push("hover:bg-opacity-80")

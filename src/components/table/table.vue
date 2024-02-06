@@ -11,12 +11,14 @@
       :cells="headCells"
       :showCheckbox="showCheckbox"
       :checkedItems="checkedItems"
+      :tableActions="tableActions"
     />
     <TableBody
       :headCells="headCells"
       :data="data"
       :showCheckbox="showCheckbox"
       :checkedItems="checkedItems"
+      :tableActions="tableActions"
     />
   </table>
 </template>
@@ -24,7 +26,14 @@
 <script lang="ts">
 import TableHeader, { HeadCellType } from "./table-header/table-header.vue"
 import TableBody from "./table-body/table-body.vue"
+import { PropType } from "vue"
 
+export interface TableActionType {
+  type: string
+  label: string
+  class?: string
+  callback: Function
+}
 
 export default {
   components: {
@@ -37,6 +46,7 @@ export default {
     data: { type: Array, required: true },
     checkedItems: { type: Array<String>, default: [] },
     showCheckbox: { type: Boolean, default: false },
+    tableActions: { type: Object as PropType<TableActionType[]> },
   },
   computed: {
     _class() {

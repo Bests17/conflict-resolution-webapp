@@ -3,12 +3,26 @@ import DashboardVue from "../views/dashboard/dashboard.vue"
 import ActivitiesVue from "../views/activities/activities.vue"
 import CategoriesVue from "../views/categories/categories.vue"
 import CategoryFilesVue from "../views/files/files.vue"
+import reviewConflictVue from "../views/review-conflict/review-conflict.vue"
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: DashboardVue,
+    redirect: "record",
+  },
+  {
+    path: "/record",
+    children: [
+      {
+        path: "",
+        component: DashboardVue,
+      },
+      {
+        path: ":record_id/review-conflict",
+        component: reviewConflictVue,
+      },
+    ],
   },
   {
     path: "/activities",

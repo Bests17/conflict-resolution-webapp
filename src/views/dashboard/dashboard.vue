@@ -4,14 +4,14 @@
       <div class="flex items-center gap-[25px] justify-between">
         <div class="flex items-center gap-[25px] w-full">
           <Dropdown
-            :items="records"
+            :items="recordSortItems"
             v-model="activeRecord"
             label="Sort record by"
             rounded
           />
 
           <Dropdown
-            :items="records"
+            :items="recordSortItems"
             label="Filter"
             icon="bars-filter"
             iconClass="min-w-5 min-h-5"
@@ -44,6 +44,7 @@
         :data="getData"
         :showCheckbox="true"
         class="mt-[23px]"
+        :tableActions="tableActions"
       />
     </div>
   </Layout>
@@ -54,19 +55,21 @@ import Header from "../../components/header/header.vue"
 import Layout from "../../components/layout/dash-layout/dash-layout.vue"
 import TopBar from "../../components/top-bar/top-bar.vue"
 import Alert from "../../components/alert/alert.vue"
-import Table from "../../components/table/table.vue"
+import Table, { TableActionType } from "../../components/table/table.vue"
 import { HeadCellType } from "../../components/table/table-header/table-header.vue"
 import Dropdown, { ItemType } from "../../components/dropdown/dropdown.vue"
 import Button from "../../components/button/button.vue"
 import Icon from "../../components/icons/base-icon.vue"
 import SearchInput from "../../components/input/search-input.vue"
+import { v4 as uuidv4 } from "uuid"
 
 interface DataType {
   headCells: HeadCellType[]
   tableData: any[]
   activeRecord: string | undefined
-  records: ItemType[]
+  recordSortItems: ItemType[]
   searchText: string
+  tableActions: TableActionType[]
 }
 
 export default {
@@ -104,14 +107,10 @@ export default {
           field: "status",
           name: "Status",
         },
-        {
-          field: "actions",
-          name: "",
-        },
       ],
       tableData: [
         {
-          id: "1",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -119,7 +118,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "2",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -127,7 +126,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "3",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -135,7 +134,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "3",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -143,7 +142,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "3",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -151,7 +150,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "3",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -159,7 +158,7 @@ export default {
           status: "2 Conflict",
         },
         {
-          id: "3",
+          id: uuidv4(),
           name: "Aminu Alex",
           phone: "0903485423",
           birthday: "21/10/2001",
@@ -168,7 +167,7 @@ export default {
         },
       ],
       activeRecord: "",
-      records: [
+      recordSortItems: [
         {
           value: "name",
           label: "Name",
@@ -183,6 +182,14 @@ export default {
         },
       ],
       searchText: "",
+      tableActions: [
+        {
+          type: "button",
+          label: "View",
+          class: "w-full bg-purple-500 ring-1 ring-primary-1000",
+          callback: this.handleViewDetail,
+        },
+      ],
     }
   },
   computed: {
@@ -190,15 +197,14 @@ export default {
       return this.tableData.map((row: any) => {
         return {
           ...row,
-          actions: [
-            {
-              type: "button",
-              label: "View",
-              class: "w-full bg-purple-500 ring-1 ring-primary-1000",
-            },
-          ],
         }
       })
+    },
+  },
+  methods: {
+    handleViewDetail(row: any) {
+      console.log("row", row)
+      this.$router.push(`/record/${row.id}/review-conflict`)
     },
   },
 }

@@ -3,7 +3,7 @@
     <label
       v-show="Boolean(label)"
       for="price"
-      class="block text-sm font-semi-bold text-gray-700"
+      class="block text-sm font-semibold text-gray-700"
       >{{ label }}</label
     >
     <div :class="['relative', fullWidth ? 'w-full' : '']">

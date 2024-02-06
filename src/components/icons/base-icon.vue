@@ -16,12 +16,15 @@ import IconBarsFilter from "./icon-bars-filter.vue"
 import IconCircleInfo from "./icon-circle-info.vue"
 import IconCheckbox from "./icon-checkbox.vue"
 import IconCircleCheckbox from "./icon-circle-checkbox.vue"
+import IconCircleCheckbox2 from "./icon-circle-checkbox-2.vue"
 import IconCloudUpload from "./icon-cloud-upload.vue"
 import IconAddFolder from "./icon-add-folder.vue"
 import IconFolder from "./icon-folder.vue"
 import IconPencil from "./icon-pencil.vue"
 import IconTrash from "./icon-trash.vue"
 import IconBackSpace from "./icon-back-space.vue"
+import IconUndo from "./icon-undo.vue"
+import IconWarning from "./icon-warning.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -34,12 +37,15 @@ const icons: any = {
   "circle-info": IconCircleInfo,
   checkbox: IconCheckbox,
   circleCheckbox: IconCircleCheckbox,
+  "circle-checkbox-2": IconCircleCheckbox2,
   cloudUpload: IconCloudUpload,
   addFolder: IconAddFolder,
   folder: IconFolder,
   pencil: IconPencil,
   trash: IconTrash,
   back: IconBackSpace,
+  undo: IconUndo,
+  warning: IconWarning,
 }
 
 export default {

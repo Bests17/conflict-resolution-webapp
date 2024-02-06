@@ -11,6 +11,8 @@ export default {
         },
       },
       fontSize: {
+        xxs: "10.8px",
+        xs: "12px",
         sm: "14px",
         md: ["16px", "normal"],
         lg: ["20px", "normal"],
@@ -36,6 +38,16 @@ export default {
         orange: {
           100: "#FFF9E9",
           500: "#D27100",
+        },
+        warning: {
+          50: "#FFFAEB",
+          100: "#FEF0C7",
+          800: "#93370D",
+        },
+        success: {
+          50: "#ECFDF3",
+          100: "#D1FADF",
+          600: "#039855",
         },
         neutral: {
           700: "#3F444D",

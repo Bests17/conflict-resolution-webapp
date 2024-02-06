@@ -8,20 +8,19 @@
         :key="`${row.id}-${headCell.field}`"
         v-for="headCell of headCells"
       >
-        <template v-if="headCell.field === 'actions'">
-          <div class="flex items-center">
-            <Button
-              :key="`${row.id}-action-${index}`"
-              :class="action.class"
-              v-for="(action, index) of row.actions"
-              @click="row.onClick"
-              >{{ action.label }}</Button
-            >
-          </div>
-        </template>
-
-        <template v-else>
-          {{ row[headCell.field] }}
+        {{ row[headCell.field] }}
+      </TableCell>
+      <TableCell
+        :key="`${row.id}-action-${index}`"
+        v-for="(action, index) of tableActions"
+      >
+        <template v-if="action.type === 'button'">
+          <Button
+            :class="action.class"
+            @click="handleAction(action.callback, row)"
+          >
+            {{ action.label }}
+          </Button>
         </template>
       </TableCell>
     </TableRow>
@@ -34,6 +33,8 @@ import TableRow from "../table-row/table-row.vue"
 import TableCell from "../table-cell/table-cell.vue"
 import Checkbox from "../../checkbox/checkbox.vue"
 import Button from "../../button/button.vue"
+import { PropType } from "vue"
+import { TableActionType } from "../table.vue"
 
 export default {
   components: {
@@ -47,6 +48,12 @@ export default {
     checkedItems: { type: Array<String> },
     showCheckbox: { type: Boolean },
     headCells: { type: Array<HeadCellType>, required: true },
+    tableActions: { type: Object as PropType<TableActionType[]>, default: [] },
+  },
+  methods: {
+    handleAction(callback: Function, row: any) {
+      callback(row) // Invoke the callback function with the row data
+    },
   },
 }
 </script>

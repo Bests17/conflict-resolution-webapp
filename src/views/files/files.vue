@@ -8,7 +8,7 @@
             @click="handleBack"
           >
             <Icon name="back" />
-            <span class="text-lg font-semi-bold">Categories</span>
+            <span class="text-lg font-medium">Categories</span>
           </span>
           <div class="w-full max-w-[625px]">
             <SearchInput
