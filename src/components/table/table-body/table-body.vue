@@ -30,7 +30,7 @@
         <TableCell
           :class="[
             row.id !== expandedId ? ' border-none' : '',
-            'transition-all duration-500 p-0',
+            'px-0 py-0',
           ]"
           :colspan="colspan"
         >
