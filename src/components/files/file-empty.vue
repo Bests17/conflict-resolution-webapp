@@ -10,7 +10,7 @@
     /></Button>
   </div>
 </template>
-<script>
+<script lang="ts">
 import Button from "../button/button.vue"
 import Icon from "../icons/base-icon.vue"
 
