@@ -68,6 +68,7 @@ export default {
     modelValue: { type: String, default: "" },
     startAdornment: Object as PropType<AdornmentType>,
   },
+  emits: ["update:modelValue"],
   computed: {
     value: {
       get() {

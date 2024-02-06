@@ -2,6 +2,7 @@ import { createWebHistory, createRouter } from "vue-router"
 import DashboardVue from "../views/dashboard/dashboard.vue"
 import ActivitiesVue from "../views/activities/activities.vue"
 import CategoriesVue from "../views/categories/categories.vue"
+import CategoryFilesVue from "../views/files/files.vue"
 
 const routes = [
   {
@@ -16,8 +17,16 @@ const routes = [
   },
   {
     path: "/categories",
-    name: "Categories",
-    component: CategoriesVue,
+    children: [
+      {
+        path: "",
+        component: CategoriesVue,
+      },
+      {
+        path: ":category_id/files",
+        component: CategoryFilesVue,
+      },
+    ],
   },
 ]
 

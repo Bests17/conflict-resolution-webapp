@@ -1,31 +1,37 @@
 <template lang="">
-  <button :data-variant="variant" :class="[_class]">
+  <button
+    :data-variant="variant"
+    :class="[_class]"
+    @onClick="$emit('click', $event)"
+  >
     <slot />
   </button>
 </template>
 
 <script lang="ts">
+import { PropType } from "vue"
+
 export default {
   props: {
-    color: { type: String, default: "primary" },
+    color: {
+      type: String as PropType<"primary" | "white">,
+      default: "primary",
+    },
     variant: { type: String, default: "filled" },
     class: String,
   },
+  $emit: ["click"],
   computed: {
     _class() {
       let _class = [
         "flex items-center justify-center gap-[8px] transition duration-150 ease",
         "text-nowrap",
         "rounded",
+        "px-[18px] py-2.5",
+        "text-md font-semi-bold",
       ]
       if (this.color === "primary") {
-        // padding
-        _class.push("px-[18px] py-2.5")
-        // font
-        _class.push("text-md font-semi-bold")
-        // hover state
         _class.push("hover:bg-opacity-80")
-
         if (this.variant === "outlined") {
           _class.push("bg-primary-200 text-neutral-1000")
           _class.push("ring-2 ring-inset ring-primary text-neutral-1000")
@@ -36,6 +42,11 @@ export default {
           // active state
           _class.push("active:bg-primary-800")
         }
+      }
+
+      if (this.color === "white") {
+        _class.push("hover:bg-gray-200")
+        _class.push("ring-1 ring-inset ring-gray-300 text-gray-700")
       }
 
       if (this.class) {

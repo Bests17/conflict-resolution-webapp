@@ -1,0 +1,48 @@
+<template lang="">
+  <table
+    :class="[
+      'w-full',
+      'rounded-[8px] overflow-hidden',
+      'border-collapse ring-1 ring-inset ring-[#B7B7B7]',
+      _class,
+    ]"
+  >
+    <TableHeader
+      :cells="headCells"
+      :showCheckbox="showCheckbox"
+      :checkedItems="checkedItems"
+    />
+    <TableBody
+      :headCells="headCells"
+      :data="data"
+      :showCheckbox="showCheckbox"
+      :checkedItems="checkedItems"
+    />
+  </table>
+</template>
+
+<script lang="ts">
+import TableHeader, { HeadCellType } from "./table-header/table-header.vue"
+import TableBody from "./table-body/table-body.vue"
+
+
+export default {
+  components: {
+    TableHeader,
+    TableBody,
+  },
+  props: {
+    class: { type: String, default: "" },
+    headCells: { type: Array<HeadCellType>, required: true },
+    data: { type: Array, required: true },
+    checkedItems: { type: Array<String>, default: [] },
+    showCheckbox: { type: Boolean, default: false },
+  },
+  computed: {
+    _class() {
+      return this.class
+    },
+  },
+}
+</script>
+<style lang=""></style>
