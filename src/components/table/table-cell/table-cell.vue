@@ -1,5 +1,6 @@
 <template lang="">
   <td
+    :colspan="colspan"
     :class="[
       'p-5',
       'text-black',
@@ -19,6 +20,7 @@ export default {
       type: String,
       default: "",
     },
+    colspan: { type: String, default: "1" },
   },
   computed: {
     _class() {

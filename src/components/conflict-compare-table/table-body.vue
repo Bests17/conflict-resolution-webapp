@@ -15,9 +15,11 @@
           </span>
         </span>
       </div>
-      <div class="p-[13px] border border-[#3F444D] rounded text-sm">{{ value }}</div>
+      <div class="p-[13px] border border-[#3F444D] rounded text-sm">
+        {{ value }}
+      </div>
       <div class="text-xs">
-        <Radio :label="label" />
+        <Radio :id="`${field}-${index}`" :label="label" />
       </div>
     </div>
   </td>

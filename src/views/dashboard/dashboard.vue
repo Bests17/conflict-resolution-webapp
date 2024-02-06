@@ -62,10 +62,11 @@ import Button from "../../components/button/button.vue"
 import Icon from "../../components/icons/base-icon.vue"
 import SearchInput from "../../components/input/search-input.vue"
 import { v4 as uuidv4 } from "uuid"
+import { RecordType } from "../../types/record"
 
 interface DataType {
   headCells: HeadCellType[]
-  tableData: any[]
+  tableData: RecordType[]
   activeRecord: string | undefined
   recordSortItems: ItemType[]
   searchText: string
@@ -88,8 +89,16 @@ export default {
     return {
       headCells: [
         {
-          field: "name",
-          name: "Name",
+          field: "sn",
+          name: "SN",
+        },
+        {
+          field: "first_name",
+          name: "First name",
+        },
+        {
+          field: "last_name",
+          name: "Last name",
         },
         {
           field: "phone",
@@ -111,59 +120,77 @@ export default {
       tableData: [
         {
           id: uuidv4(),
-          name: "Aminu Alex",
+          first_name: "Aminu",
+          last_name: "Aminu",
           phone: "0903485423",
           birthday: "21/10/2001",
           address: "21 maple avenue",
           status: "2 Conflict",
+          age: "24",
+          source: "Category 1\ Algebra student .Xls",
+          records: [
+            {
+              id: uuidv4(),
+              first_name: "Aminu",
+              last_name: "Alex",
+              address: "Northbridge California,(CA), 89000, USA",
+              age: "24",
+              gender: "male",
+              phone: "0903485423",
+              class: "Grade 12",
+              birthday: "21/10/2001",
+              source: "Category 1\ Algebra student .Xls",
+            },
+            {
+              id: uuidv4(),
+              first_name: "Aminu",
+              last_name: "Alex",
+              address: "Northbridge California,(CA), 89000, USA",
+              age: "12",
+              gender: "male",
+              class: "Grade 12",
+              source: "Category 4\ Chem. student .Xls",
+              phone: "0903485423",
+              birthday: "21/10/2001",
+            },
+          ],
         },
         {
           id: uuidv4(),
-          name: "Aminu Alex",
+          first_name: "Aminu",
+          last_name: "Aminu",
           phone: "0903485423",
           birthday: "21/10/2001",
           address: "21 maple avenue",
           status: "2 Conflict",
-        },
-        {
-          id: uuidv4(),
-          name: "Aminu Alex",
-          phone: "0903485423",
-          birthday: "21/10/2001",
-          address: "21 maple avenue",
-          status: "2 Conflict",
-        },
-        {
-          id: uuidv4(),
-          name: "Aminu Alex",
-          phone: "0903485423",
-          birthday: "21/10/2001",
-          address: "21 maple avenue",
-          status: "2 Conflict",
-        },
-        {
-          id: uuidv4(),
-          name: "Aminu Alex",
-          phone: "0903485423",
-          birthday: "21/10/2001",
-          address: "21 maple avenue",
-          status: "2 Conflict",
-        },
-        {
-          id: uuidv4(),
-          name: "Aminu Alex",
-          phone: "0903485423",
-          birthday: "21/10/2001",
-          address: "21 maple avenue",
-          status: "2 Conflict",
-        },
-        {
-          id: uuidv4(),
-          name: "Aminu Alex",
-          phone: "0903485423",
-          birthday: "21/10/2001",
-          address: "21 maple avenue",
-          status: "2 Conflict",
+          age: "24",
+          source: "Category 1\ Algebra student .Xls",
+          records: [
+            {
+              id: uuidv4(),
+              first_name: "Aminu",
+              last_name: "Alex",
+              address: "Northbridge California,(CA), 89000, USA",
+              age: "24",
+              gender: "male",
+              phone: "0903485423",
+              class: "Grade 12",
+              birthday: "21/10/2001",
+              source: "Category 1\ Algebra student .Xls",
+            },
+            {
+              id: uuidv4(),
+              first_name: "Aminu",
+              last_name: "Alex",
+              address: "Northbridge California,(CA), 89000, USA",
+              age: "12",
+              gender: "male",
+              class: "Grade 12",
+              source: "Category 4\ Chem. student .Xls",
+              phone: "0903485423",
+              birthday: "21/10/2001",
+            },
+          ],
         },
       ],
       activeRecord: "",
@@ -194,9 +221,10 @@ export default {
   },
   computed: {
     getData() {
-      return this.tableData.map((row: any) => {
+      return this.tableData.map((row: any, index: number) => {
         return {
           ...row,
+          sn: index + 1,
         }
       })
     },

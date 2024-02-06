@@ -14,7 +14,7 @@ import { PropType } from "vue"
 export default {
   props: {
     color: {
-      type: String as PropType<"primary" | "white">,
+      type: String as PropType<"primary" | "white" | "red">,
       default: "primary",
     },
     variant: { type: String, default: "filled" },
@@ -47,6 +47,13 @@ export default {
       if (this.color === "white") {
         _class.push("hover:bg-gray-200")
         _class.push("ring-1 ring-inset ring-gray-300 text-gray-700")
+      }
+
+      if (this.color === "red") {
+        _class.push("text-red-500")
+        _class.push("bg-red-100")
+        _class.push("hover:bg-red-200")
+        _class.push("ring-1 ring-inset ring-red-500")
       }
 
       if (this.class) {

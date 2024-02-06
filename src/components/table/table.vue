@@ -32,6 +32,7 @@ export interface TableActionType {
   type: string
   label: string
   class?: string
+  color?: string
   callback: Function
 }
 
