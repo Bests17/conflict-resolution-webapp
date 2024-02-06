@@ -116,6 +116,7 @@ export default {
       successMessage: "",
       records: [
         {
+          id: '1',
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
@@ -125,6 +126,7 @@ export default {
           source: "Category 1\ Algebra student .Xls",
         },
         {
+          id: '1',
           first_name: "Aminu",
           last_name: "Alex",
           address: "Northbridge California,(CA), 89000, USA",
