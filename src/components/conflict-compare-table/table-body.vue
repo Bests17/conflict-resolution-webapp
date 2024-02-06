@@ -2,7 +2,7 @@
   <td :class="['h-10 p-4', _class]">
     <div class="flex flex-col gap-2">
       <div class="flex gap-1 justify-between">
-        <span class="text-red font-bold text-sm">{{ `#${index}` }}</span>
+        <span class="text-red font-bold text-sm">{{ `#${index + 1}` }}</span>
 
         <span class="flex gap-1 items-center text-xxs">
           <Icon
