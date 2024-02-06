@@ -38,8 +38,7 @@
           'focus:ring-1 focus:ring-inset focus:ring-purple-500',
           'sm:text-sm',
         ]"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        v-model="value"
         :placeholder="placeholder"
       />
     </div>
@@ -69,7 +68,16 @@ export default {
     modelValue: { type: String, default: "" },
     startAdornment: Object as PropType<AdornmentType>,
   },
-  emits: ['update:modelValue']
+  computed: {
+    value: {
+      get() {
+        return this.modelValue
+      },
+      set(value: any) {
+        this.$emit("update:modelValue", value)
+      },
+    },
+  },
 }
 </script>
 <style lang=""></style>
