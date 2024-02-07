@@ -10,7 +10,7 @@
         {{ `${record.first_name} ${record.last_name}` }}
       </div>
       <div class="text-black text-xs mt-3">
-        {{ record.address }}
+        {{ record.address.value }}
       </div>
       <div class="text-black text-xs mt-2 flex gap-1">
         <span> Age: {{ record.age }} | </span>
