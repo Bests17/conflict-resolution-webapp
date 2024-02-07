@@ -5,9 +5,7 @@
         class="relative w-full cursor-default rounded-md bg-white py-3 pl-3 pr-10 text-left text-black shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-1 focus:ring-primary sm:text-sm sm:leading-6"
       >
         <span class="flex items-center">
-          <span class="block truncate">{{
-            value?.label ?? placeholder
-          }}</span>
+          <span class="block truncate">{{ value?.label ?? placeholder }}</span>
         </span>
         <span
           class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2"

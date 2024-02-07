@@ -10,11 +10,17 @@
       </span>
 
       <div class="text-md text-gray-900 mt-5 font-semibold">
-        Replace record?
+        {{ title }}
       </div>
 
-      <div class="mt-2 text-gray-500 text-sm">
-        Do you want to replace all conflicting records with the selected record?
+      <div v-if="description" class="mt-2 text-gray-500 text-sm">
+        {{ description }}
+      </div>
+
+      <div v-if="alert" class="mt-5">
+        <Alert icon="warning" color="warning" class="text-left">{{
+          alert
+        }}</Alert>
       </div>
 
       <div class="flex gap-3 mt-8">
@@ -22,11 +28,11 @@
           class="w-full leading-6 rounded-lg"
           color="white"
           @click="$emit('close')"
-          >Keep Existing</Button
+          >{{ closeButton }}</Button
         >
-        <Button class="w-full leading-6 rounded-lg" @click="$emit('confirm')"
-          >Replace All</Button
-        >
+        <Button class="w-full leading-6 rounded-lg" @click="$emit('confirm')">{{
+          confirmButton
+        }}</Button>
       </div>
     </div>
   </Modal>
@@ -36,16 +42,23 @@
 import Modal from "./model.vue"
 import Icon from "../icons/base-icon.vue"
 import Button from "../button/button.vue"
+import Alert from "../alert/alert.vue"
 
 export default {
   components: {
     Modal,
     Icon,
     Button,
+    Alert,
   },
   emits: ["close", "confirm"],
   props: {
     open: { type: Boolean, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    closeButton: { type: String, default: "close" },
+    confirmButton: { type: String, default: "Confirm" },
+    alert: { type: String, default: "" },
   },
 }
 </script>

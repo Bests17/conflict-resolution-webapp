@@ -129,15 +129,37 @@
         </div>
 
         <div class="flex gap-2 w-full mt-5">
-          <Button color="white" class="w-full"
+          <Button color="white" class="w-full" @click="showRevertModal = true"
             ><Icon name="undo" />Revert Changes</Button
           >
-          <Button class="bg-primary-950 w-full"
+          <Button
+            class="bg-primary-950 w-full"
+            @click="showSaveConfirmModal = true"
             ><Icon name="checkbox" />Save new profile</Button
           >
         </div>
       </div>
     </div>
+
+    <ConfirmModal
+      title="Revert changes?"
+      description="Do you want to revert changes you made?"
+      :open="showRevertModal"
+      @close="showRevertModal = false"
+      @confirm="onRevertChanges"
+      closeButton="Discard"
+      confirmButton="Revert changes"
+    />
+
+    <ConfirmModal
+      title="Are you sure about this changes?"
+      alert="You're about to overwrite information with the provided information. If you proceed with this, you won't be able to undo your action"
+      :open="showSaveConfirmModal"
+      @close="showSaveConfirmModal = false"
+      @confirm="onSave"
+      closeButton="Discard"
+      confirmButton="Revert changes"
+    />
   </Layout>
 </template>
 
@@ -150,10 +172,13 @@ import Icon from "../../components/icons/base-icon.vue"
 import Input from "../../components/input/input.vue"
 import Dropdown, { ItemType } from "../../components/dropdown/dropdown.vue"
 import Select from "../../components/select/select.vue"
+import ConfirmModal from "../../components/modal/confirm-modal.vue"
 
 interface DataType {
   genderItems: ItemType
   gender: string
+  showRevertModal: boolean
+  showSaveConfirmModal: boolean
 }
 
 export default {
@@ -166,6 +191,7 @@ export default {
     Input,
     Dropdown,
     Select,
+    ConfirmModal,
   },
   data(): DataType {
     return {
@@ -180,12 +206,20 @@ export default {
         },
       ],
       gender: "",
+      showRevertModal: false,
+      showSaveConfirmModal: false,
     }
   },
   methods: {
     onBack() {
       const record_id = this.$route.params.record_id
       this.$router.push(`/record/${record_id}/review-conflict`)
+    },
+    onRevertChanges() {
+      console.log("onRevertChanges")
+    },
+    onSave() {
+      console.log("onSave")
     },
   },
 }

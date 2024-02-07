@@ -69,9 +69,13 @@
   </div>
 
   <ReplaceConfirmModal
+    title="Replace record?"
+    description="Do you want to replace all conflicting records with the selected record?"
     :open="showReplaceConfirmModal"
     @close="closeReplaceConfirmModal"
     @confirm="onReplaceConfirm"
+    closeButton="Keep Existing"
+    confirmButton="Replace All"
   />
   <ConfirmSuccessModal
     :open="showSuccessModal"
@@ -88,7 +92,7 @@ import { TableActionType } from "../table/table.vue"
 import Button from "../button/button.vue"
 import Radio from "../radio/radio.vue"
 import Icon from "../icons/base-icon.vue"
-import ReplaceConfirmModal from "../modal/replace-confirm-modal.vue"
+import ReplaceConfirmModal from "../modal/confirm-modal.vue"
 import ConfirmSuccessModal from "../modal/confirmation-success-modal.vue"
 import TableActions from "../table/table-actions/table-actions.vue"
 

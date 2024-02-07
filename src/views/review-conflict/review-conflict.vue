@@ -50,9 +50,13 @@
       </div>
     </div>
     <ReplaceConfirmModal
+      title="Replace record?"
+      description="Do you want to replace all conflicting records with the selected record?"
       :open="showReplaceConfirmModal"
       @close="closeReplaceConfirmModal"
       @confirm="onReplaceConfirm"
+      closeButton="Keep Existing"
+      confirmButton="Replace All"
     />
     <ConfirmSuccessModal
       :open="showSuccessModal"
@@ -71,7 +75,7 @@ import RecordSources from "../../components/profile-section/record-sources.vue"
 import { RecordType } from "../../types/record"
 import ActivityCard from "../../components/activity/activity-card.vue"
 import { ActivityType } from "../../components/activity/activity-item.vue"
-import ReplaceConfirmModal from "../../components/modal/replace-confirm-modal.vue"
+import ReplaceConfirmModal from "../../components/modal/confirm-modal.vue"
 import ConfirmSuccessModal from "../../components/modal/confirmation-success-modal.vue"
 import RecordCompareTable from "../../components/conflict-compare-table/conflict-compare-table.vue"
 import { v4 as uuidv4 } from "uuid"
