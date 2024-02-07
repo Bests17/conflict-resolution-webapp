@@ -116,20 +116,26 @@ export default {
       successMessage: "",
       records: [
         {
-          id: '1',
+          id: "1",
           first_name: "Aminu",
           last_name: "Alex",
-          address: "Northbridge California,(CA), 89000, USA",
+          address: {
+            value: "Northbridge California,(CA), 89000, USA",
+            status: 0,
+          },
           age: "24",
           gender: "male",
           class: "Grade 12",
           source: "Category 1\ Algebra student .Xls",
         },
         {
-          id: '1',
+          id: "1",
           first_name: "Aminu",
           last_name: "Alex",
-          address: "Northbridge California,(CA), 89000, USA",
+          address: {
+            value: "Northbridge California,(CA), 89000, USA",
+            status: 0,
+          },
           age: "12",
           gender: "male",
           class: "Grade 12",

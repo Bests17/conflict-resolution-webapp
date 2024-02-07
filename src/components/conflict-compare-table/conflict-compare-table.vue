@@ -19,7 +19,7 @@
           :field="getLabel(key)"
           :key="`${key}-${index}`"
           :index="index"
-          :value="column"
+          :value="getColumn(column)"
           :rows="data"
         ></TBody>
       </tr>
@@ -57,6 +57,13 @@ export default {
     },
   },
   methods: {
+    getColumn (column: any) {
+      if (typeof column === 'string') {
+        return column
+      } else {
+        return column.value
+      }
+    },
     getLabel(key: string) {
       switch (key) {
         case "first_name":

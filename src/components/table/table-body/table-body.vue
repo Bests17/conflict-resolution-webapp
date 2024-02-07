@@ -21,7 +21,17 @@
           :key="`${row.id}-${headCell.field}`"
           v-for="headCell of headCells"
         >
-          {{ row[headCell.field] }}
+          <template
+            v-if="
+              (typeof row[headCell.field] === 'string') |
+                (typeof row[headCell.field] === 'number')
+            "
+          >
+            {{ row[headCell.field] }}
+          </template>
+          <template v-else>
+            {{ row[headCell.field].value }}
+          </template>
         </TableCell>
 
         <TableCell v-if="tableActions">

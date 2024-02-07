@@ -25,6 +25,8 @@ import IconTrash from "./icon-trash.vue"
 import IconBackSpace from "./icon-back-space.vue"
 import IconUndo from "./icon-undo.vue"
 import IconWarning from "./icon-warning.vue"
+import IconVerified from "./icon-verified.vue"
+import IconUnverified from "./icon-unverified.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -46,6 +48,8 @@ const icons: any = {
   back: IconBackSpace,
   undo: IconUndo,
   warning: IconWarning,
+  verified: IconVerified,
+  unverified: IconUnverified,
 }
 
 export default {

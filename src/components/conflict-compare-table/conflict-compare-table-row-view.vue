@@ -13,13 +13,36 @@
           v-for="(headCell, index) of headCells"
         >
           <div class="capitalize">
-            <Radio
-              :id="`${row.id}-${index}`"
-              v-if="headCell.field !== 'source'"
-              :label="row[headCell.field]"
-            />
-            <template v-else>
-              {{ row[headCell.field] }}
+            <template v-if="headCell.field === 'source'">
+              <template v-if="typeof row[headCell.field] === 'string'">
+                {{ row[headCell.field] }}
+              </template>
+            </template>
+            <template v-else-if="headCell.field === 'address'">
+              <span
+                class="flex gap-2 items-center cursor-pointer"
+                :title="row[headCell.field].value"
+              >
+                <Radio :id="`${row.id}-${index}-address`" />
+                <Icon
+                  :name="
+                    row[headCell.field].status === 0 ? 'unverified' : 'verified'
+                  "
+                  :class="
+                    row[headCell.field].status === 0
+                      ? 'text-red'
+                      : 'text-primary'
+                  "
+                />
+                <label
+                  :for="`${row.id}-${index}-address`"
+                  class="cursor-pointer line-clamp-2"
+                  >{{ row[headCell.field].value }}</label
+                >
+              </span>
+            </template>
+            <template v-else-if="typeof row[headCell.field] === 'string'">
+              <Radio :id="`${row.id}-${index}`" :label="row[headCell.field]" />
             </template>
           </div>
         </td>

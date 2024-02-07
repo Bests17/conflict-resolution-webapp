@@ -1,8 +1,12 @@
+export interface RecordAddressType {
+  value: string
+  status: number
+}
 export interface RecordType {
   id: string
   first_name: string
   last_name: string
-  address: string
+  address: RecordAddressType
   age: string | number
   phone?: string
   birthday?: string
