@@ -42,9 +42,12 @@
       <Table
         :headCells="headCells"
         :data="getData"
+        :showExpandIcon="true"
         :showCheckbox="true"
         class="mt-[23px]"
         :tableActions="tableActions"
+        :rowTableHeadCells="recordHeadCells"
+        :rowTableActions="recordTableActions"
       />
     </div>
   </Layout>
@@ -64,13 +67,19 @@ import SearchInput from "../../components/input/search-input.vue"
 import { v4 as uuidv4 } from "uuid"
 import { RecordType } from "../../types/record"
 
+interface TableDataType extends RecordType {
+  children: RecordType[]
+}
+
 interface DataType {
   headCells: HeadCellType[]
-  tableData: RecordType[]
+  recordHeadCells: HeadCellType[]
+  tableData: TableDataType[]
   activeRecord: string | undefined
   recordSortItems: ItemType[]
   searchText: string
   tableActions: TableActionType[]
+  recordTableActions: TableActionType[]
 }
 
 export default {
@@ -89,7 +98,7 @@ export default {
     return {
       headCells: [
         {
-          field: "sn",
+          field: "number",
           name: "SN",
         },
         {
@@ -128,7 +137,7 @@ export default {
           status: "2 Conflict",
           age: "24",
           source: "Category 1\ Algebra student .Xls",
-          records: [
+          children: [
             {
               id: uuidv4(),
               first_name: "Aminu",
@@ -165,7 +174,7 @@ export default {
           status: "2 Conflict",
           age: "24",
           source: "Category 1\ Algebra student .Xls",
-          records: [
+          children: [
             {
               id: uuidv4(),
               first_name: "Aminu",
@@ -217,6 +226,40 @@ export default {
           callback: this.handleViewDetail,
         },
       ],
+      recordHeadCells: [
+        {
+          field: "first_name",
+          name: "First name",
+        },
+        {
+          field: "last_name",
+          name: "Last name",
+        },
+        {
+          field: "phone",
+          name: "Phone",
+        },
+        {
+          field: "birthday",
+          name: "birthday",
+        },
+        {
+          field: "address",
+          name: "Address",
+        },
+        {
+          field: "source",
+          name: "Source",
+        },
+      ],
+      recordTableActions: [
+        {
+          type: "button",
+          label: "Delete record",
+          color: "red",
+          callback: this.deleteRecord,
+        },
+      ],
     }
   },
   computed: {
@@ -224,7 +267,7 @@ export default {
       return this.tableData.map((row: any, index: number) => {
         return {
           ...row,
-          sn: index + 1,
+          number: index + 1,
         }
       })
     },

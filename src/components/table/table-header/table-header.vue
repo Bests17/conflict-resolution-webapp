@@ -8,6 +8,12 @@
       <Checkbox />
     </th>
     <th
+      v-if="showExpandIcon"
+      class="py-5 px-2.5 w-10 text-white font-semibold text-sm"
+      align="center"
+    >
+    </th>
+    <th
       class="py-5 px-2.5 text-white font-semibold text-sm"
       :key="cell.field"
       v-for="cell of cells"
@@ -44,6 +50,7 @@ export default {
     cells: { type: Object as PropType<HeadCellType[]>, required: true },
     checkedItems: { type: Array<String> },
     showCheckbox: { type: Boolean },
+    showExpandIcon: { type: Boolean },
     tableActions: { type: Object as PropType<TableActionType[]>, default: [] },
   },
 }

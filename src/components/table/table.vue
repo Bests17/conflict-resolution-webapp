@@ -10,15 +10,19 @@
     <TableHeader
       :cells="headCells"
       :showCheckbox="showCheckbox"
+      :showExpandIcon="showExpandIcon"
       :checkedItems="checkedItems"
       :tableActions="tableActions"
     />
     <TableBody
       :headCells="headCells"
       :data="data"
+      :showExpandIcon="showExpandIcon"
       :showCheckbox="showCheckbox"
       :checkedItems="checkedItems"
       :tableActions="tableActions"
+      :rowTableHeadCells="rowTableHeadCells"
+      :rowTableActions="rowTableActions"
     />
   </table>
 </template>
@@ -47,7 +51,11 @@ export default {
     data: { type: Array, required: true },
     checkedItems: { type: Array<String>, default: [] },
     showCheckbox: { type: Boolean, default: false },
+    showExpandIcon: { type: Boolean, default: false },
     tableActions: { type: Object as PropType<TableActionType[]> },
+    hasRowTable: { type: Object as PropType<TableActionType[]> },
+    rowTableHeadCells: { type: Array<HeadCellType> },
+    rowTableActions: { type: Object as PropType<TableActionType[]> },
   },
   computed: {
     _class() {

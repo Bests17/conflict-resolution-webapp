@@ -1,11 +1,23 @@
 <template lang="">
   <tbody>
     <template :key="`${row.id}-${index}`" v-for="(row, index) of data">
-      <TableRow @click="handleClick(row.id)">
-        <TableCell v-if="showCheckbox">
+      <TableRow>
+        <TableCell v-if="showCheckbox && !isExpanded(row.id)">
           <Checkbox :key="`${row.id}-checkbox-${index}`" :value="row.id" />
         </TableCell>
+        <TableCell v-if="showExpandIcon" :colspan="isExpanded(row.id) ? 2 : 1">
+          <span @click="handleClick(row.id)" class="cursor-pointer"
+            ><Icon
+              name="chevron-down"
+              :class="[
+                'min-w-[15px] transition-all duration-300 delay-100',
+                isExpanded(row.id) ? 'rotate-180' : '',
+              ]"
+          /></span>
+        </TableCell>
+
         <TableCell
+          ref="tableCell"
           :key="`${row.id}-${headCell.field}`"
           v-for="headCell of headCells"
         >
@@ -26,20 +38,20 @@
         </TableCell>
       </TableRow>
 
-      <TableRow v-if="row.records" class="w-full">
+      <TableRow v-if="row.children" class="w-full">
         <TableCell
-          :class="[
-            row.id !== expandedId ? ' border-none' : '',
-            'px-0 py-0',
-          ]"
+          :class="[!isExpanded(row.id) ? ' border-none' : '', 'px-0 py-0']"
           :colspan="colspan"
         >
-          <Collapse :when="row.id === expandedId" class="duration-500">
-            <RecordCompareTable
-              :records="row.records"
-              :headCells="recordHeadCells"
-              :tableActions="recordTableActions"
-            />
+          <Collapse :when="isExpanded(row.id)" class="duration-500">
+            <template v-if="Object.keys(cellWidths).length > 0">
+              <RecordCompareTable
+                :records="row.children"
+                :headCells="rowTableHeadCells"
+                :tableActions="rowTableActions"
+                :cellWidths="cellWidths"
+              />
+            </template>
           </Collapse>
         </TableCell>
       </TableRow>
@@ -57,11 +69,11 @@ import { PropType } from "vue"
 import { TableActionType } from "../table.vue"
 import RecordCompareTable from "../../conflict-compare-table/conflict-compare-table-row-view.vue"
 import { Collapse } from "vue-collapsed"
+import Icon from "../../icons/base-icon.vue"
 
 interface DataType {
   expandedId: string | null
-  recordHeadCells: HeadCellType[]
-  recordTableActions: TableActionType[]
+  cellWidths: Object
 }
 
 export default {
@@ -72,13 +84,17 @@ export default {
     Button,
     RecordCompareTable,
     Collapse,
+    Icon,
   },
   props: {
     data: { type: Array, required: true },
     checkedItems: { type: Array<String> },
     showCheckbox: { type: Boolean },
+    showExpandIcon: { type: Boolean },
     headCells: { type: Array<HeadCellType>, required: true },
     tableActions: { type: Object as PropType<TableActionType[]>, default: [] },
+    rowTableHeadCells: { type: Array<HeadCellType> },
+    rowTableActions: { type: Object as PropType<TableActionType[]> },
   },
   computed: {
     colspan() {
@@ -89,49 +105,41 @@ export default {
       if (this.tableActions) {
         length += 1
       }
+      if (this.showExpandIcon) {
+        length += 1
+      }
       return String(length)
     },
   },
   data(): DataType {
     return {
       expandedId: null,
-      recordHeadCells: [
-        {
-          field: "first_name",
-          name: "First name",
-        },
-        {
-          field: "last_name",
-          name: "Last name",
-        },
-        {
-          field: "phone",
-          name: "Phone",
-        },
-        {
-          field: "birthday",
-          name: "birthday",
-        },
-        {
-          field: "address",
-          name: "Address",
-        },
-        {
-          field: "source",
-          name: "Source",
-        },
-      ],
-      recordTableActions: [
-        {
-          type: "button",
-          label: "Delete record",
-          color: "red",
-          callback: this.deleteRecord,
-        },
-      ],
+      cellWidths: {},
     }
   },
+  async mounted() {
+    const cellWidths = this.getTableCellWidth()
+    this.cellWidths = cellWidths
+  },
   methods: {
+    getTableCellWidth() {
+      const tableCellRefs: HTMLTableCellElement[] = Array.isArray(
+        this.$refs.tableCell
+      )
+        ? (this.$refs.tableCell as HTMLTableCellElement[])
+        : Object.values(
+            this.$refs.tableCell as { [key: string]: HTMLTableCellElement }
+          )
+      const newObj = {} as any
+      for (let i = 0; i < this.headCells.length; i++) {
+        const ref = Object.values(tableCellRefs)[i]
+        if (ref) {
+          const cell = (ref as any).$el as HTMLTableCellElement
+          newObj[this.headCells[i].field] = cell.getBoundingClientRect().width
+        }
+      }
+      return newObj
+    },
     handleAction(callback: Function, row: any) {
       callback(row) // Invoke the callback function with the row data
     },
@@ -144,6 +152,9 @@ export default {
     },
     deleteRecord(row: any) {
       console.log("row", row)
+    },
+    isExpanded(id: string) {
+      return id === this.expandedId
     },
   },
   $emit: ["row-click"],

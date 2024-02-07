@@ -2,13 +2,16 @@
   <table class="conflict-compare-table-v2 w-full">
     <tbody>
       <tr v-for="(row, key) of records">
-        <td class="w-[140px]">
+        <td class="w-[190px]">
           <div class="text-red font-bold">
             {{ `Record #${key + 1}` }}
           </div>
         </td>
 
-        <td v-for="(headCell, index) of headCells">
+        <td
+          :style="`width: ${cellWidths[headCell.field]}px`"
+          v-for="(headCell, index) of headCells"
+        >
           <div class="capitalize">
             <Radio
               :id="`${row.id}-${index}`"
@@ -81,6 +84,7 @@ export default {
     records: { type: Object as PropType<RecordType[]>, required: true },
     headCells: { type: Array<HeadCellType>, required: true },
     tableActions: { type: Object as PropType<TableActionType[]>, default: [] },
+    cellWidths: { type: Object },
   },
   components: {
     Button,

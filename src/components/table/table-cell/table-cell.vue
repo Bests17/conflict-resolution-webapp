@@ -20,7 +20,7 @@ export default {
       type: String,
       default: "",
     },
-    colspan: { type: String, default: "1" },
+    colspan: { type: [String, Number], default: "1" },
   },
   computed: {
     _class() {
