@@ -32,7 +32,7 @@
           :id="category.id"
           @click="handleCardClick(category.id)"
           @edit="(id) => handleEdit(id, index)"
-          @remove="(id) => handleRemove(id, index)"
+          @remove="(id) => handleRemove(id)"
         />
       </div>
       <template v-else>
@@ -97,32 +97,30 @@ export default {
     },
     handleCreate(category: CategoryType) {
       if (category?.id) {
-        const _category = this.categories.find(
-          (category) => category.id === category.id
-        )
-        const index = this.categories.findIndex((ca) => ca.id === category.id)
-        if (!_category) return
-        _category.name = category.name
-        this.categories[index] = _category
+        this.categories = this.categories.map((ca) => {
+          if (ca.id === category.id) {
+            return { ...ca, name: category.name }
+          } else {
+            return ca
+          }
+        })
       } else {
-        this.categories.push({ id: uuidv4(), name: category.name })
+        this.categories.push({
+          id: `${uuidv4()}-${new Date().getTime()}`,
+          name: category.name,
+        })
       }
       this.showAddModal = false
     },
-    handleRemove(id: string, index: number) {
-      console.log("id", id)
-      const arr = this.categories
-      arr.splice(index, 1)
-      this.categories = arr
+    handleRemove(id: string) {
+      this.categories = this.categories.filter((category) => category.id !== id)
     },
     handleEdit(id: string, index: number) {
       this.showAddModal = true
       this.category = this.categories[index]
       console.log("handleEdit", id)
-      console.log("handleEdit", index)
     },
     handleCardClick(id: string) {
-      console.log("handleCardClick", id)
       this.$router.push(`/categories/${id}/files`)
     },
   },

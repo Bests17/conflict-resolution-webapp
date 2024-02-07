@@ -6,7 +6,7 @@
       >
         <Icon name="folder" class="text-gray-700" />
       </span>
-      <div class="text-md text-gray-700 mt-5">Create new category</div>
+      <div class="text-md text-gray-700 mt-5">{{title}}</div>
       <div class="mt-3">
         <Input
           v-model="categoryName"
@@ -21,9 +21,9 @@
           @click="$emit('close')"
           >Cancel</Button
         >
-        <Button class="w-full leading-6 rounded-lg" @click="handleCreate"
-          >Create category</Button
-        >
+        <Button class="w-full leading-6 rounded-lg" @click="handleClick">{{
+          buttonTitle
+        }}</Button>
       </div>
     </div>
   </Modal>
@@ -39,6 +39,8 @@ import { PropType } from "vue"
 
 interface DataType {
   categoryName: string | null | undefined
+  buttonTitle: string
+  title: string
 }
 
 export default {
@@ -58,16 +60,26 @@ export default {
       immediate: true,
       handler(newVal: CategoryType | null) {
         this.categoryName = newVal?.name || ""
+
+        if (newVal?.name) {
+          this.buttonTitle = "Update category"
+          this.title = "Update new category"
+        } else {
+          this.title = "Create new category"
+          this.buttonTitle = "Create category"
+        }
       },
     },
   },
   data(): DataType {
     return {
       categoryName: "",
+      buttonTitle: "",
+      title: ""
     }
   },
   methods: {
-    handleCreate() {
+    handleClick() {
       if (!this.categoryName) return
       const category = this.category || {}
       this.$emit("create", { ...category, name: this.categoryName })
