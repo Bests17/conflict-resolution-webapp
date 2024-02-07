@@ -55,7 +55,7 @@ export default {
   props: {
     open: { type: Boolean, required: true },
     title: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String },
     closeButton: { type: String, default: "close" },
     confirmButton: { type: String, default: "Confirm" },
     alert: { type: String, default: "" },

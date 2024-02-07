@@ -175,7 +175,7 @@ import Select from "../../components/select/select.vue"
 import ConfirmModal from "../../components/modal/confirm-modal.vue"
 
 interface DataType {
-  genderItems: ItemType
+  genderItems: ItemType[]
   gender: string
   showRevertModal: boolean
   showSaveConfirmModal: boolean

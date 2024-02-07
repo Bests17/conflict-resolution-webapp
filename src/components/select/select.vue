@@ -87,7 +87,10 @@ export default {
   },
   props: {
     modelValue: { type: String, default: "" },
-    items: { type: Object as PropType<ItemType[]> },
+    items: {
+      type: Object as PropType<ItemType[]>,
+      required: true,
+    },
     id: String,
     placeholder: { type: String, default: "Select" },
   },

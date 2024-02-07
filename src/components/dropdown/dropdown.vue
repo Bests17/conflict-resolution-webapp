@@ -47,8 +47,8 @@ import type { PropType } from "vue"
 import BaseIcon from "../icons/base-icon.vue"
 
 export interface ItemType {
-  value: String
-  label: String
+  value: string
+  label: string
 }
 
 export default {
