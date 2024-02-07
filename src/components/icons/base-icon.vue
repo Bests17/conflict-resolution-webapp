@@ -27,6 +27,7 @@ import IconUndo from "./icon-undo.vue"
 import IconWarning from "./icon-warning.vue"
 import IconVerified from "./icon-verified.vue"
 import IconUnverified from "./icon-unverified.vue"
+import IconChevronUpDown from "./icon-chevron-up-down.vue"
 
 const icons: any = {
   search: SearchIcon,
@@ -50,6 +51,7 @@ const icons: any = {
   warning: IconWarning,
   verified: IconVerified,
   unverified: IconUnverified,
+  chevronUpDown: IconChevronUpDown,
 }
 
 export default {

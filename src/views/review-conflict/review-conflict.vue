@@ -10,7 +10,11 @@
           <span class="text-lg font-medium">Back</span>
         </span>
 
-        <Button variant="outlined" class="py-[15px] ring-[#226BFF]">
+        <Button
+          variant="outlined"
+          class="py-[15px] ring-[#226BFF]"
+          @click="onClickOverwrite"
+        >
           Overwrite profile
         </Button>
       </div>
@@ -174,6 +178,10 @@ export default {
       this.showReplaceConfirmModal = false
       this.successMessage = `<span class="font-semibold">${this.currentRecord?.first_name} ${this.currentRecord?.last_name}</span> information has been updated.`
       this.showSuccessModal = true
+    },
+    onClickOverwrite() {
+      const record_id = this.$route.params.record_id
+      this.$router.push(`/record/${record_id}/overwrite`)
     },
   },
 }

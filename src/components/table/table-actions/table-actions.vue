@@ -32,6 +32,7 @@
 import { TableActionType } from "../table.vue"
 import Icon from "../../icons/base-icon.vue"
 import Button from "../../button/button.vue"
+import { PropType } from "vue"
 
 export default {
   props: {

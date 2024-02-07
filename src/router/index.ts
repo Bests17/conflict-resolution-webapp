@@ -4,6 +4,7 @@ import ActivitiesVue from "../views/activities/activities.vue"
 import CategoriesVue from "../views/categories/categories.vue"
 import CategoryFilesVue from "../views/files/files.vue"
 import reviewConflictVue from "../views/review-conflict/review-conflict.vue"
+import overwriteProfileVue from "../views/overwrite-profile/overwrite-profile.vue"
 
 const routes = [
   {
@@ -21,6 +22,10 @@ const routes = [
       {
         path: ":record_id/review-conflict",
         component: reviewConflictVue,
+      },
+      {
+        path: ":record_id/overwrite",
+        component: overwriteProfileVue,
       },
     ],
   },
