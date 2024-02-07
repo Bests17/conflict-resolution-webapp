@@ -31,7 +31,11 @@
     <div class="py-[30px] flex justify-center container mx-auto">
       <FileEmpty v-if="!files.length" @click="openModal" />
       <template v-else>
-        <Table :headCells="headCells" :data="getData()" />
+        <Table
+          :headCells="headCells"
+          :data="getData()"
+          :tableActions="tableActions"
+        />
       </template>
     </div>
     <FileUploadModal
@@ -54,7 +58,7 @@ import FileEmpty from "../../components/files/file-empty.vue"
 import FileUploadModal from "../../components/modal/file-upload-modal.vue"
 import { v4 as uuidv4 } from "uuid"
 import { HeadCellType } from "../../components/table/table-header/table-header.vue"
-import Table from "../../components/table/table.vue"
+import Table, { TableActionType } from "../../components/table/table.vue"
 import dayjs from "dayjs"
 
 interface DataType {
@@ -62,6 +66,7 @@ interface DataType {
   searchText: string
   files: FileType[]
   showUploadModal: boolean
+  tableActions: TableActionType[]
 }
 
 export default {
@@ -111,6 +116,21 @@ export default {
           name: "Action",
         },
       ],
+      tableActions: [
+        {
+          type: "iconButton",
+          icon: "trash",
+          class: "text-red",
+          callback: this.onRemove,
+        },
+        {
+          type: "button",
+          label: "Import file",
+          icon: "download",
+          class: "w-full bg-purple-500 ring-1 ring-primary-1000",
+          callback: this.onImport,
+        },
+      ],
     }
   },
   methods: {
@@ -148,6 +168,12 @@ export default {
           last_modified: dayjs(row.last_modified).format("MM/DD/YYYY"),
         }
       })
+    },
+    onRemove() {
+      console.log("onRemove")
+    },
+    onImport() {
+      console.log("onImport")
     },
   },
 }

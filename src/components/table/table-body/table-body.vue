@@ -23,18 +23,12 @@
         >
           {{ row[headCell.field] }}
         </TableCell>
-        <TableCell
-          :key="`${row.id}-action-${index}`"
-          v-for="(action, index) of tableActions"
-        >
-          <template v-if="action.type === 'button'">
-            <Button
-              :class="action.class"
-              @click="handleAction(action.callback, row)"
-            >
-              {{ action.label }}
-            </Button>
-          </template>
+
+        <TableCell v-if="tableActions">
+          <TableActions
+            @click="(action) => handleAction(action.callback, row)"
+            :tableActions="tableActions"
+          />
         </TableCell>
       </TableRow>
 
@@ -64,12 +58,12 @@ import { HeadCellType } from "../table-header/table-header.vue"
 import TableRow from "../table-row/table-row.vue"
 import TableCell from "../table-cell/table-cell.vue"
 import Checkbox from "../../checkbox/checkbox.vue"
-import Button from "../../button/button.vue"
 import { PropType } from "vue"
 import { TableActionType } from "../table.vue"
 import RecordCompareTable from "../../conflict-compare-table/conflict-compare-table-row-view.vue"
 import { Collapse } from "vue-collapsed"
 import Icon from "../../icons/base-icon.vue"
+import TableActions from "../table-actions/table-actions.vue"
 
 interface DataType {
   expandedId: string | null
@@ -81,10 +75,10 @@ export default {
     TableRow,
     TableCell,
     Checkbox,
-    Button,
     RecordCompareTable,
     Collapse,
     Icon,
+    TableActions,
   },
   props: {
     data: { type: Array, required: true },
@@ -141,7 +135,9 @@ export default {
       return newObj
     },
     handleAction(callback: Function, row: any) {
-      callback(row) // Invoke the callback function with the row data
+      if (callback instanceof Function) {
+        callback(row) // Invoke the callback function with the row data
+      }
     },
     handleClick(row_id: string) {
       if (row_id === this.expandedId) {

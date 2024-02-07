@@ -34,9 +34,10 @@ import { PropType } from "vue"
 
 export interface TableActionType {
   type: string
-  label: string
+  label?: string
   class?: string
   color?: string
+  icon?: string
   callback: Function
 }
 

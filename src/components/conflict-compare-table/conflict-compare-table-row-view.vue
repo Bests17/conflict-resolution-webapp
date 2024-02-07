@@ -24,19 +24,8 @@
           </div>
         </td>
 
-        <td
-          :key="`${row.id}-action-${index}`"
-          v-for="(action, index) of tableActions"
-        >
-          <template v-if="action.type === 'button'">
-            <Button
-              :color="action.color"
-              :class="action.class"
-              @click="handleAction(action.callback, row)"
-            >
-              {{ action.label }}
-            </Button>
-          </template>
+        <td v-if="tableActions.length > 0">
+          <TableActions :tableActions="tableActions" />
         </td>
       </tr>
     </tbody>
@@ -78,6 +67,7 @@ import Radio from "../radio/radio.vue"
 import Icon from "../icons/base-icon.vue"
 import ReplaceConfirmModal from "../modal/replace-confirm-modal.vue"
 import ConfirmSuccessModal from "../modal/confirmation-success-modal.vue"
+import TableActions from "../table/table-actions/table-actions.vue"
 
 export default {
   props: {
@@ -92,6 +82,7 @@ export default {
     Icon,
     ConfirmSuccessModal,
     ReplaceConfirmModal,
+    TableActions,
   },
   computed: {},
   data() {
